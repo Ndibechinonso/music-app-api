@@ -10,12 +10,12 @@ router.post('/', async function (req, res) {
     try {
         console.log(req.body, 'req')
         const playlistId = req.body.playlistId
-        const playlistTrackId = req.body.playlistTrackId
+        const playlistTrackId = req.body.trackId
         const accessToken = req.body.accessToken
         
-        const deleteTrack = await axios.delete(`https://api.deezer.com/playlist/${playlistId}/tracks?songs=${playlistTrackId}&access_token=${accessToken}`)
-        console.log(deleteTrack, 'response')
-        res.status(200).json(deleteTrack.data)
+        const addTrack = await axios.post(`https://api.deezer.com/playlist/${playlistId}/tracks?songs=${playlistTrackId}&access_token=${accessToken}`)
+        console.log(addTrack, 'response')
+        res.status(200).json(addTrack.data)
     }
     catch (error) {
         res.status(400).json(error)
@@ -26,10 +26,13 @@ router.post('/', async function (req, res) {
 
 router.get('/', function (req, res) {
     console.log('Inside Home Login');
-    res.send("You  hit the users route")
+    res.send("You  hit the addTrack route")
 });
 
 
 
 
 module.exports = router;
+
+
+

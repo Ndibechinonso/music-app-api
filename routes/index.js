@@ -13,7 +13,7 @@ router.post('/', async function (req, res) {
   try {
     console.log(req.body.code, "token");
     const excode = req.body.code
-    const token = await axios.get(`https://connect.deezer.com/oauth/access_token.php?app_id=476242&secret=0d7bebada39dcf0431e46a816c612123&code=${excode}&output=json`)
+    const token = await axios.get(`https://connect.deezer.com/oauth/access_token.php?app_id=475622&secret=df16d40386432399911a363b3bcb7886&code=${excode}&output=json`)
     if(token.data.error){
       return res.status(400).json(token.data.error)
      }

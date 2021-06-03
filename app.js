@@ -21,6 +21,9 @@ var homeRouter = require('./routes/home');
 var artistsRouter = require('./routes/artists');
 var playlistsRouter = require('./routes/playlists');
 var genresRouter = require('./routes/genres');
+var addTrackRouter = require('./routes/addTrack');
+var addPlaylistRouter = require('./routes/addPlaylist');
+
 
 var app = express();
 
@@ -41,6 +44,8 @@ app.use(cors())
 //   next();
 // });
 
+app.use('/addPlaylist', addPlaylistRouter);
+app.use('/addTrack', addTrackRouter);
 app.use('/delete', deleteRouter);
 app.use('/feedback', feedbackRouter);
 app.use('/users', usersRouter);
