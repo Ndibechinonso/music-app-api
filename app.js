@@ -23,7 +23,8 @@ var playlistsRouter = require('./routes/playlists');
 var genresRouter = require('./routes/genres');
 var addTrackRouter = require('./routes/addTrack');
 var addPlaylistRouter = require('./routes/addPlaylist');
-
+var deleteUserPlaylistRouter = require('./routes/deleteUserPlaylist');
+var deleteOtherPlaylistsRouter = require('./routes/deleteOtherPlaylists');
 
 var app = express();
 
@@ -44,6 +45,9 @@ app.use(cors())
 //   next();
 // });
 
+
+app.use('/deleteOtherPlaylists', deleteOtherPlaylistsRouter);
+app.use('/deleteUserPlaylist', deleteUserPlaylistRouter);
 app.use('/addPlaylist', addPlaylistRouter);
 app.use('/addTrack', addTrackRouter);
 app.use('/delete', deleteRouter);
