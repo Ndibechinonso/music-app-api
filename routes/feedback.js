@@ -47,19 +47,6 @@ router.post('/', function (req, res) {
 });
 
 
-// router.post('/',async function(req, res) {
-//   try {
-    
-  
-
-// }
-// catch (error) {
-//   res.status(400).json(error)
-//   console.log(error, 'error')
-// }
-//  });
-
-
 router.get('/', function(req, res) {
 res.send("You  hit the feedback route")
 });
