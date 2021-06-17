@@ -25,6 +25,8 @@ var addTrackRouter = require('./routes/addTrack');
 var addPlaylistRouter = require('./routes/addPlaylist');
 var deleteUserPlaylistRouter = require('./routes/deleteUserPlaylist');
 var deleteOtherPlaylistsRouter = require('./routes/deleteOtherPlaylists');
+var addFavTrackRouter = require('./routes/addFavTrack');
+
 
 var app = express();
 
@@ -45,7 +47,7 @@ app.use(cors())
 //   next();
 // });
 
-
+app.use('/addFavTrack', addFavTrackRouter);
 app.use('/deleteOtherPlaylists', deleteOtherPlaylistsRouter);
 app.use('/deleteUserPlaylist', deleteUserPlaylistRouter);
 app.use('/addPlaylist', addPlaylistRouter);
