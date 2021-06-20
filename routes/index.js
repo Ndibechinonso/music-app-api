@@ -3,6 +3,7 @@ var router = express.Router();
 var axios = require("axios");
 var fs = require("fs");
 const { response } = require("express");
+require('dotenv').config();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -12,8 +13,10 @@ router.get("/", function (req, res, next) {
 router.post("/", async function (req, res) {
   try {
     const excode = req.body.code;
+    const secretKey = process.env.SECRET_KEY
+    const appId = process.env.APP_ID
     const token = await axios.get(
-      `https://connect.deezer.com/oauth/access_token.php?app_id=475622&secret=df16d40386432399911a363b3bcb7886&code=${excode}&output=json`
+      `https://connect.deezer.com/oauth/access_token.php?app_id=${appId}&secret=${secretKey}&code=${excode}&output=json`
     );
     if (token.data.error) {
       return res.status(400).json(token.data.error);
