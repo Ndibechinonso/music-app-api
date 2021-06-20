@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios')
 const { response } = require('express');
+require('dotenv').config();
 // const session = require('express-session');
 
 
 var mongoose = require('mongoose');
 
 //Set up mongoose connection
-var mongoDB = 'mongodb+srv://nonso1:pipper@cluster0.h3kxv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+var mongoDB = process.env.DB_CONN;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
   if (!err) {
     console.log('database connection successful')
