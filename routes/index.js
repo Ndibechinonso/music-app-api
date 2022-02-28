@@ -15,6 +15,8 @@ router.post("/", async function (req, res) {
     const excode = req.body.code;
     const secretKey = process.env.SECRET_KEY
     const appId = process.env.APP_ID
+    console.log(excode)
+
     const token = await axios.get(
       `https://connect.deezer.com/oauth/access_token.php?app_id=${appId}&secret=${secretKey}&code=${excode}&output=json`
     );
