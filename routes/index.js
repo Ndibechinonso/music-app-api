@@ -15,7 +15,6 @@ router.post("/", async function (req, res) {
     const excode = req.body.code;
     const secretKey = process.env.SECRET_KEY
     const appId = process.env.APP_ID
-    console.log(excode)
 
     const token = await axios.get(
       `https://connect.deezer.com/oauth/access_token.php?app_id=${appId}&secret=${secretKey}&code=${excode}&output=json`
@@ -27,16 +26,15 @@ router.post("/", async function (req, res) {
     const userDetails = await axios.get(
       `https://api.deezer.com/user/me?access_token=${token.data.access_token}`
     );
+
     if (userDetails.data.error) {
       return res.status(400).json(userDetails.data.error);
     }
 
-    const results = [
-      token.data.access_token,
-      userDetails.data,
-      userDetails.data.id,
-    ];
-
+const results = {
+  token: token.data,
+  userData: userDetails.data
+}
     res.status(200).json(results);
   } catch (error) {
     res.status(400).json(error);
