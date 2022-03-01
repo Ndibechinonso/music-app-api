@@ -26,11 +26,19 @@ var axios = require("axios");
       if (recommendedReleases.data.error) {
         return res.status(400).json(recommendedReleases.data.error);
       }
+      
+      const playlists = await axios.get(
+        `https://api.deezer.com/user/${id}/playlists?access_token=${token}`
+      );
+      if (playlists.data.error) {
+        return res.status(400).json(playlists.data.error);
+      }
   
       const results = {
         recommendedAlbums:  recommendedAlbums.data,
         lastPlayed: lastPlayed.data,
         recommendedTracks: recommendedReleases.data,
+        playlistsData: playlists.data,
       };
   
       res.status(200).json(results);
