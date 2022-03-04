@@ -3,10 +3,7 @@ var axios = require("axios");
 
   const fetchPlaylist = async (req, res) => {
     try {
-      const trackcode = req.body.tracklist;
-  
-      const playlist = await axios.get(`${trackcode}`);
-  
+      const playlist = await axios.get(`${req.body.tracklist}`);
       res.status(200).json(playlist.data);
     } catch (error) {
       res.status(400).json(error);
@@ -15,15 +12,9 @@ var axios = require("axios");
 
 const addPlaylist = async (req, res) => {
   try {
-      const id = req.body.id;
-      const playlistName = req.body.playlistName;
-
-      const accessToken = req.body.accessToken;
-
       const addTrack = await axios.post(
-          `https://api.deezer.com/user/${id}/playlists?title=${playlistName}&access_token=${accessToken}`
+          `https://api.deezer.com/user/${req.body.id}/playlists?title=${req.body.playlistName}&access_token=${req.body.accessToken}`
       );
-
       res.status(200).json(addTrack.data);
   } catch (error) {
       res.status(400).json(error);
@@ -32,12 +23,8 @@ const addPlaylist = async (req, res) => {
 
 const addPlaylistTrack = async (req, res) => {
   try {
-      const playlistId = req.body.playlistId;
-      const playlistTrackId = req.body.trackId;
-      const accessToken = req.body.accessToken;
-
       const addTrack = await axios.post(
-          `https://api.deezer.com/playlist/${playlistId}/tracks?songs=${playlistTrackId}&access_token=${accessToken}`
+          `https://api.deezer.com/playlist/${req.body.playlistId}/tracks?songs=${req.body.trackId}&access_token=${req.body.accessToken}`
       );
       res.status(200).json(addTrack.data);
   } catch (error) {
@@ -48,13 +35,8 @@ const addPlaylistTrack = async (req, res) => {
 
 const addFavTrack = async (req, res) => {
   try {
-      const id = req.body.id;
-      const trackId = req.body.trackId;
-
-      const accessToken = req.body.accessToken;
-
       const addFavTrack = await axios.post(
-          `https://api.deezer.com/user/${id}/tracks?track_id=${trackId}&access_token=${accessToken}`
+          `https://api.deezer.com/user/${req.body.id}/tracks?track_id=${req.body.trackId}&access_token=${req.body.accessToken}`
       );
       res.status(200).json(addFavTrack.data);
   } catch (error) {
@@ -64,16 +46,12 @@ const addFavTrack = async (req, res) => {
 
 const deletePlaylist = async (req, res) => {
   try {
-      const playlistId = req.body.playlistId;
-      const accessToken = req.body.accessToken;
-
       const deleteTrack = await axios.delete(
-          `https://api.deezer.com/playlist/${playlistId}?access_token=${accessToken}`
+          `https://api.deezer.com/playlist/${req.body.playlistId}?access_token=${req.body.accessToken}`
       );
       if (deleteTrack.data.error) {
           return res.status(400).json(deleteTrack.data.error);
       }
-
       res.status(200).json(deleteTrack.data);
   } catch (error) {
       res.status(400).json(error);
@@ -82,14 +60,9 @@ const deletePlaylist = async (req, res) => {
 
 const deletePlaylistTrack = async (req, res) => {
   try {
-      const playlistId = req.body.playlistId;
-      const playlistTrackId = req.body.playlistTrackId;
-      const accessToken = req.body.accessToken;
-console.log(playlistId, playlistTrackId);
       const deleteTrack = await axios.delete(
-          `https://api.deezer.com/playlist/${playlistId}/tracks?songs=${playlistTrackId}&access_token=${accessToken}`
+          `https://api.deezer.com/playlist/${req.body.playlistId}/tracks?songs=${req.body.playlistTrackId}&access_token=${req.body.accessToken}`
       );
-
       res.status(200).json(deleteTrack.data);
   } catch (error) {
       res.status(400).json(error);
@@ -98,16 +71,12 @@ console.log(playlistId, playlistTrackId);
 
 const deleteOtherUsersPlaylists = async (req, res) => {
   try {
-      const playlistId = req.body.playlistId;
-      const accessToken = req.body.accessToken;
-      const id = req.body.id;
       const deleteOtherPlaylists = await axios.delete(
-          `https://api.deezer.com/user/${id}/playlists?playlist_id=${playlistId}&access_token=${accessToken}`
+          `https://api.deezer.com/user/${req.body.id}/playlists?playlist_id=${req.body.playlistId}&access_token=${req.body.accessToken}`
       );
       if (deleteOtherPlaylists.data.error) {
           return res.status(400).json(deleteOtherPlaylists.data.error);
       }
-
       res.status(200).json(deleteOtherPlaylists.data);
   } catch (error) {
       res.status(400).json(error);

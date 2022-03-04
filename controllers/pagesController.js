@@ -82,7 +82,6 @@ var axios = require("axios");
     try {
       const token = req.body.accessToken;
       const id = req.body.userId;
-  
       const playlists = await axios.get(
         `https://api.deezer.com/user/${id}/playlists?access_token=${token}`
       );
