@@ -29,7 +29,7 @@ router.post('/addPlaylist', addPlaylist)
 router.post('/addPlaylistTrack', addPlaylistTrack)
 router.post('/deletePlaylist', deletePlaylist)
 router.post('/deletePlaylistTrack', deletePlaylistTrack)
-router.post('deleteOtherUsersPlaylist', deleteOtherUsersPlaylists)
+router.post('/deleteOtherUsersPlaylist', deleteOtherUsersPlaylists)
 
 router.get("/", function (req, res) {
   console.log("Inside Home Login");
