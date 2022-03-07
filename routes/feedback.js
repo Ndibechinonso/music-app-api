@@ -4,10 +4,8 @@ require('dotenv').config();
 require('../config/dbConnection')
 var User = require('../models/Users')
 
-
 /* Add New User. */
 router.post('/', function (req, res) {
- 
   User.create({
     fullName: req.body.fullName,
     email: req.body.email,
