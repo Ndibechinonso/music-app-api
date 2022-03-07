@@ -1,6 +1,5 @@
 var axios = require("axios");
 
- 
  const fetcHomeData = async (req, res) => {
     try {
       const token = req.body.accessToken;
@@ -10,7 +9,7 @@ var axios = require("axios");
       );
 
       if (recommendedAlbums.data.error) {
-        return res.status(400).json(recommendedAlbums.data.error);
+        return res.json(recommendedAlbums.data.error);
       }
   
       const lastPlayed = await axios.get(
@@ -40,7 +39,6 @@ var axios = require("axios");
         recommendedTracks: recommendedReleases.data,
         playlistsData: playlists.data,
       };
-  
       res.status(200).json(results);
     } catch (error) {
       res.status(400).json(error);
@@ -56,7 +54,7 @@ var axios = require("axios");
         `https://api.deezer.com/user/${id}/artists?access_token=${token}`
       );
       if (artists.data.error) {
-        return res.status(400).json(artists.data.error);
+        return res.json(artists.data.error);
       }
   
       const recommendedArtists = await axios.get(
@@ -86,7 +84,7 @@ var axios = require("axios");
         `https://api.deezer.com/user/${id}/playlists?access_token=${token}`
       );
       if (playlists.data.error) {
-        return res.status(400).json(playlists.data.error);
+        return res.json(playlists.data.error);
       }
   
       const recommendedPlaylists = await axios.get(
@@ -116,7 +114,7 @@ const fetchGenrePageData = async (req, res) => {
         `https://api.deezer.com/genre?access_token=${token}`
       );
       if (genre.data.error) {
-        return res.status(400).json(genre.data.error);
+        return res.json(genre.data.error);
       }
   
       const charts = await axios.get(

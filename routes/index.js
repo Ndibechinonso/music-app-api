@@ -1,8 +1,6 @@
 var express = require("express");
 var router = express.Router();
 var axios = require("axios");
-var fs = require("fs");
-const { response } = require("express");
 require('dotenv').config();
 
 /* GET home page. */

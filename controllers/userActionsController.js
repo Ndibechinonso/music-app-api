@@ -1,6 +1,5 @@
 var axios = require("axios");
 
-
   const fetchPlaylist = async (req, res) => {
     try {
       const playlist = await axios.get(`${req.body.tracklist}`);
@@ -31,7 +30,6 @@ const addPlaylistTrack = async (req, res) => {
       res.status(400).json(error);
   }
 }
-
 
 const addFavTrack = async (req, res) => {
   try {
